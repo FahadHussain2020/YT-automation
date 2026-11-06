@@ -1,0 +1,39 @@
+requests>=2.31
+PyYAML>=6.0
+python-dotenv>=1.0
+Pillow>=10.0
+numpy>=1.26
+soundfile>=0.12
+
+# dashboard
+fastapi>=0.110
+uvicorn>=0.29
+python-multipart>=0.0.9
+
+# YouTube upload + analytics
+google-api-python-client>=2.120
+google-auth-oauthlib>=1.2
+google-auth-httplib2>=0.2
+
+# copy check against source videos
+youtube-transcript-api>=1.0
+
+# competitor research without an API key
+yt-dlp>=2025.1
+
+# optional: script writing via Claude API
+anthropic>=0.40
+
+# optional: English voice (local, free)
+kokoro-onnx>=0.4
+
+# optional: word-level captions from the final audio
+faster-whisper>=1.0
+
+pytest>=8.0
+
+# kids mode: cut-outs of characters and animals (local background removal)
+rembg>=2.0.60
+
+# optional, NVIDIA GPU: local AI images (SDXL) and picture matching (CLIP)
+# pip install torch diffusers transformers accelerate

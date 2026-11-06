@@ -1,0 +1,116 @@
+# Your channel. Edit this first. Everything the pipeline writes follows these settings.
+# kids = original songs/stories for ages 0-6 with AI cartoon scenes and the host below
+# (leave it out for the default researched, sourced narration videos).
+mode: kids
+# none = narrator voice only, animals/objects on screen; or a key from `characters:` below
+host: none
+
+channel:
+  name: "My Channel"
+  # One clear niche helps both viewers and YouTube's systems.
+  niche: "kids songs, nursery rhymes, learning games and short stories for ages 0-6 (made for kids)"
+  audience: "toddlers and preschoolers aged 0-6 and the parents who watch with them"
+  # Words the scout uses to find topics and competitors
+  seed_keywords:
+    - "nursery rhymes for kids"
+    - "kids songs"
+    - "bedtime stories for toddlers"
+  # Channels you study for what works (IDs, e.g. UCxxxx). Their videos are also used
+  # by the copy check so your scripts never echo them.
+  competitor_channel_ids: []
+
+# Recurring characters (like a show's regular cast). A script may put one on screen by its key;
+# its cut-out (and poses) are reused in every shot so it always looks the same.
+# Set host: <key> above to also show it in every scene. Example:
+characters: {}
+#  max:
+#    name: "Max"
+#    kind: boy                 # any boy in a script becomes this character
+#    description: "cute 3D animated toddler cartoon, 4 year old boy, ..."
+#    outfits:
+#      daily: "teal t-shirt, yellow shorts, red sneakers"
+#    seed: 8
+#    sprite: assets/characters/max/max.png
+#    poses:
+#      wave: assets/characters/max/poses/wave.png
+
+languages:
+  # One entry per output language. voice: kokoro | elevenlabs | own
+  en:
+    voice: kokoro
+    kokoro_voice: af_heart     # warm, clear; beat af_bella/af_nicole/af_sky/bf_emma in a Whisper clarity test
+    speed: 0.9
+  ur:
+    enabled: false
+    voice: elevenlabs
+    # Urdu scripts can be written by hand: put script_ur.md in the video folder.
+
+format:
+  target_minutes: 3          # one song or story; compilations are built from these
+  words_per_minute: 160      # measured: af_heart at 0.9 speaks ~160 words/min incl. short gaps
+  resolution: [1920, 1080]
+  fps: 30
+  loudness_lufs: -14         # YouTube normalises to about -14 LUFS
+  music_volume_db: -24       # background music under narration (assets/music/)
+  burn_captions: true        # true = captions drawn into the video; SRT is always uploaded
+  auto_music: true           # no tracks in assets/music/? fetch a free CC0/CC BY one and credit it
+  # one search or a list; only licences that allow commercial reuse are taken, CC BY is credited
+  music_query: ["Daily Beetle", "Fluffing a Duck", "Carefree", "Pixel Peeker Polka", "Wallpaper", "Happy Alley"]
+  music_artist: "Kevin MacLeod"   # cheerful, soft instrumentals (CC BY 3.0, credited in the description)
+
+# What makes this channel more than "AI slop". The review stage refuses a video
+# without at least one of these. Keep them honest.
+originality:
+  # own = record narration.wav yourself (best for monetisation)
+  # commentary = AI voice for facts, your recorded segments (commentary_*.wav) for opinion
+  # ai = AI voice only (allowed, but the riskiest under YouTube's inauthentic-content rules)
+  voice_mode: ai              # ai = fully automatic; switch to commentary once you record your own lines
+  require_human_note: false   # true = review blocks videos without my_take.md (recommended for monetisation)
+
+visuals:
+  # Order matters: real archive and stock footage first, AI images last.
+  source_order: [wikimedia, pexels, pixabay, openverse, internet_archive, local, ai]
+  max_ai_image_share: 0.25    # at most 25% of shots may be AI images
+  label_ai_images: true       # draws "AI illustration" on AI images
+  vision_check: true          # local vision model checks every picture matches its line
+  clip_match: true            # no Ollama? CLIP (needs torch) scores each picture against its shot
+  clip_min_score: 0.22        # weaker matches are dropped (AI image or previous shot instead)
+  max_still_seconds: 6        # a still image never stays on screen longer than this
+
+publish:
+  privacy: private            # always upload private first; schedule makes it public later
+  schedule_hours_utc: [15]    # publish times (UTC)
+  days_between_videos: 2
+  category_id: "27"           # 27 = Education
+  made_for_kids: true        # required for content aimed at ages 0-6
+  default_language: en
+
+shorts:
+  per_video: 2
+  max_seconds: 58
+
+# Kids formats the script stage rotates through so videos don't share one template.
+structures:
+  - name: learn_one_thing_short
+    beats: [first item shown and named in the very first second, repeat it, invite kids to say or do it, next item, next item, quick recap of all items]
+  - name: sing_along_song
+    beats: [hook chorus first, verse 1 adds one new item, chorus, verse 2 adds one more item, chorus, verse 3 adds one more item, slower final chorus]
+  - name: bedtime_story
+    beats: [calm cosy scene, a small gentle problem, first try, second try, third try that works, cosy resolution, quiet goodnight to the viewer]
+  - name: routine_song
+    beats: [first step of the routine shown right away, its little chorus, next step, chorus, next step, chorus, next step, chorus, happy recap of all the steps, ready to play]
+  - name: lullaby
+    beats: [the calm night scene and the classic first verse, the verse again slower, a new gentle verse of our own, the classic verse softly, a whispered goodnight]
+  - name: nursery_rhyme_song
+    beats: [the classic verse right away, the classic verse continues with counting or repetition, new verses of our own in the same pattern, the happy ending verse, a short recap and goodbye]
+  - name: guess_the_animal
+    beats: [an animal sound is heard while the place is empty, ask who it is and pause, reveal the animal and name it, invite kids to make the sound and pause, one gentle detail about how it looks or moves, next animal the same way, recap of every animal and sound, slow calm goodbye]
+  - name: counting_learning_song
+    beats: [show the action, count 1 with an action, count up one number at a time each with its own action, big finish on the last number, recap counting all together]
+
+# Openings, from what works on top kids channels (see data/competitors/).
+hooks:
+  - "Start teaching in the first second: show and name the first item. No hello, no intro."
+  - "Open on the subject already doing the action (splashing, hopping, clapping)."
+  - "Ask the kids to join in right away: 'Can you clap along?'"
+  - "Open with the catchy chorus, then start the first verse."

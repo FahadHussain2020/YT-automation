@@ -1,0 +1,51 @@
+# ---- Secrets: never commit ----
+.env
+*.env
+!.env.example
+secrets/
+client_secret*.json
+token*.json
+*.pem
+*.key
+
+# ---- AI models: too big for git, each person downloads them (see README) ----
+models/
+*.onnx
+*.bin
+*.safetensors
+*.ckpt
+*.gguf
+*.pt
+*.pth
+*.h5
+
+# ---- Generated output ----
+out/
+deliver/
+voice_cache/
+data/videos/
+data/cache/
+data/*.db
+data/dashboard_sessions.json
+output/
+*.mp4
+*.mov
+*.wav
+*.mp3
+*.zip
+*.tar.gz
+
+# ---- Personal files ----
+*cnic*
+*passport*
+*id-card*
+photos/
+
+# ---- Tooling ----
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+node_modules/
+.DS_Store
